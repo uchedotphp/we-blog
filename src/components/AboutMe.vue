@@ -12,7 +12,10 @@
       </el-col>
       <el-col :span="16">
         <div class="grid-content bg-purple intro">
-          <h1>Hey! I’m <b>Uche</b></h1>
+          <h1>
+            Hey! I’m
+            <b>Uche</b>
+          </h1>
           <p class="description">
             Breakfast procuring no end happiness allowance assurance frank. Met
             simplicity nor difficulty unreserved who. Entreaties mr conviction
@@ -27,11 +30,11 @@
 
 <script>
 export default {
-  name: "AboutMeComponent",
+  name: "AboutMeComponent"
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .img-section {
   width: 270px;
   height: 270px;
@@ -66,7 +69,6 @@ export default {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  // opacity: 0;
   transition-delay: 500ms;
   border-radius: 50%;
 }
@@ -77,7 +79,6 @@ export default {
   margin: 0 auto;
   width: 940px;
   max-width: 100%;
-
   display: flex;
 }
 .intro {

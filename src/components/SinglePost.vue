@@ -2,15 +2,15 @@
   <div class="blog-post-details-wrapper">
     <div class="post-details-wrapper">
       <div class="post-description-wrapper">
-        <h1 class="post-title">An example can be illustrative</h1>
+        <h1 class="post-title">{{post.title}}</h1>
       </div>
       <div class="post-description">
-        <p>Given the discourse around this issue, it can be easy to either overestimate the scope of this problem, or discount solving it as irrelevant to the libraries’ mission. Recent studies have shown that the scale and impact of fake news is less significant than much of the initial reporting would suggest. While many people get their news from social media, they do not always consider it their primary source of information (Illing, 2017). Moreover, the basic trends that drive fake news include an increasingly partisan media culture that predates social media (Mittell, 2016). Perhaps most importantly, there is evidence to suggest that when people are presented with “inoculating” messages beforehand, for example information about the scientific consensus or information about the general strategies used in misinformation campaigns, it made a significant positive difference in how they interpreted subsequent information even when it taps into their preexisting identities (Cook et al., 2017; van der Linden et al., 2017). That is to say, the rise of fake news, while a serious problem, does not signal a general inability for people to identify and process facts or that there are no strategies that can effectively counteract these tendencies. Rather it signals something important about how emotions and identities, particularly when exploited by technology platforms, can influence our understanding of new information. Moreover, outside of those emotionally driven, identity-based incentives, there is less of a reason for people to use technology to generate purposefully misleading information.</p>
+        <p>{{post.body}}</p>
       </div>
 
       <!-- comments section -->
 
-      <div class="comments-wrapper">
+      <!-- <div class="comments-wrapper">
         <div class="compose-wrapper">
           <div class="textarea-outer-wrapper">
             <div class="textarea-wrapper">
@@ -20,16 +20,35 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "SinglePostComponent",
   props: {
     id: Number
+  },
+  data() {
+    return {
+      post: {}
+    };
+  },
+  created() {
+    axios
+      .get(
+        "https://jsonplaceholder.typicode.com/posts/" + this.$route.params.id
+      )
+      .then(response => {
+        this.post = response.data;
+      })
+      .catch(error => {
+        debugger;
+        error;
+      });
   }
 };
 </script>

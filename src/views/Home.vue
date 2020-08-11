@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header />
+    <Header v-if="!$route.name === 'Home'" />
     <AboutMe />
     <AllPosts />
     <Footer />
@@ -18,7 +18,7 @@ export default {
     Header,
     AboutMe,
     AllPosts,
-    Footer,
-  },
+    Footer
+  }
 };
 </script>
