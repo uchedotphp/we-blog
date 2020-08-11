@@ -17,4 +17,23 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  color: rgb(41, 41, 41);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0px;
+  font-family: Poppins, sans-serif;
+}
+
+p {
+  line-height: 2;
+  margin: 0 0 1.7em;
+}
 </style>
