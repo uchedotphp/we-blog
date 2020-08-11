@@ -14,4 +14,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.el-footer {
+  // position: relative;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 120px;
+  overflow: hidden;
+  padding: 30px 15px;
+  border-top: 1px solid rgb(243, 243, 243);
+}
+</style>
