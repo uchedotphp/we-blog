@@ -14,11 +14,6 @@
                 </a>
               </h2>
               <p class="post-excerpt">
-                <!-- Steve Holt! No, I did not kill Kitty. However, I am going to
-                oblige and answer the nice officer’s questions because I am an
-                honest man with no secrets to hide. I don’t criticize you! And
-                if you’re worried about criticism, sometimes a diet is the best
-                defense. -->
                 {{ post.body }}
               </p>
               <div class="read-more">
@@ -80,7 +75,7 @@ export default {
   },
   created() {
     axios
-      .get("https://jsonplaceholder.typicode.com/posts")
+      .get("https://jsonplaceholder.typicode.com/posts?_page=20&_limit=5")
       .then((response) => {
         this.posts = response.data;
       })
