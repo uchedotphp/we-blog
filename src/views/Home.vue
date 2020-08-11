@@ -1,11 +1,9 @@
 <template>
   <div class="home">
-    <el-container>
-      <Header />
-      <AboutMe />
-      <AllPosts />
-      <Footer />
-    </el-container>
+    <Header />
+    <AboutMe />
+    <AllPosts />
+    <Footer />
   </div>
 </template>
 
@@ -20,7 +18,7 @@ export default {
     Header,
     AboutMe,
     AllPosts,
-    Footer
-  }
+    Footer,
+  },
 };
 </script>
