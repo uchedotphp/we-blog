@@ -5,41 +5,21 @@
         <header class="title">
           Latest Stories
         </header>
-        <div class="post-card">
+        <div v-for="post in posts" :key="post.id" class="post-card">
           <div class="post-details">
             <div class="post-content">
               <h2 class="post-title">
                 <a href="#">
-                  Post one
+                  {{ post.title }}
                 </a>
               </h2>
               <p class="post-excerpt">
-                Steve Holt! No, I did not kill Kitty. However, I am going to
+                <!-- Steve Holt! No, I did not kill Kitty. However, I am going to
                 oblige and answer the nice officer’s questions because I am an
                 honest man with no secrets to hide. I don’t criticize you! And
                 if you’re worried about criticism, sometimes a diet is the best
-                defense.
-              </p>
-              <div class="read-more">
-                <a href="#">Read More</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="post-card">
-          <div class="post-details">
-            <div class="post-content">
-              <h2 class="post-title">
-                <a href="#">
-                  Post two
-                </a>
-              </h2>
-              <p class="post-excerpt">
-                Steve Holt! No, I did not kill Kitty. However, I am going to
-                oblige and answer the nice officer’s questions because I am an
-                honest man with no secrets to hide. I don’t criticize you! And
-                if you’re worried about criticism, sometimes a diet is the best
-                defense.
+                defense. -->
+                {{ post.body }}
               </p>
               <div class="read-more">
                 <a href="#">Read More</a>
@@ -90,8 +70,25 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "AllPostsComponent",
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  created() {
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => {
+        this.posts = response.data;
+      })
+      .catch((error) => {
+        debugger;
+        error;
+      });
+  },
 };
 </script>
 
