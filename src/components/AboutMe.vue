@@ -1,6 +1,7 @@
 <template>
   <el-row :gutter="20">
     <div class="intro-pane">
+      <!-- <el-container> -->
       <el-col :span="8">
         <div class="img-section">
           <div class="img-inner">
@@ -19,6 +20,7 @@
           </p>
         </div>
       </el-col>
+      <!-- </el-container> -->
     </div>
   </el-row>
 </template>

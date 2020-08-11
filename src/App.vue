@@ -15,6 +15,11 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
@@ -35,5 +40,14 @@ h6 {
 p {
   line-height: 2;
   margin: 0 0 1.7em;
+}
+
+.title::after {
+  content: "";
+  width: 68px;
+  height: 1px;
+  display: block;
+  margin-top: 8px;
+  background: rgb(41, 41, 41);
 }
 </style>
