@@ -1,12 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <el-container>
+      <Header />
+      <AboutMe />
+      <AllPosts />
+      <Footer />
+    </el-container>
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header";
+import AboutMe from "@/components/AboutMe";
+import AllPosts from "@/components/AllPosts";
+import Footer from "@/components/Footer";
 export default {
   name: "Home",
-  components: {}
+  components: {
+    Header,
+    AboutMe,
+    AllPosts,
+    Footer
+  }
 };
 </script>
