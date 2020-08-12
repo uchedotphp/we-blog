@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "SinglePostComponent",
   props: {
@@ -102,19 +103,14 @@ export default {
     return {
       user: {
         name: "",
-        writtenComment: ""
+        writtenComment: "",
+        postId: this.post.id
       },
       rules: {
         name: [
           {
             required: true,
             message: "Please input your full name",
-            trigger: "blur"
-          },
-          {
-            min: 3,
-            max: 5,
-            message: "Length should be 3 to 5",
             trigger: "blur"
           }
         ],
@@ -133,10 +129,28 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          axios
+            .post("https://jsonplaceholder.typicode.com/comments", {
+              name: this.user.name,
+              body: this.user.writtenComment,
+              postId: this.user.postId
+            })
+            .then(response => {
+              this.comments.push({
+                name: response.data.name,
+                body: response.data.body
+              });
+              this.$notify.success({
+                title: "Success",
+                message: "Comment Received!!",
+                showClose: false
+              });
+            })
+            .catch(error => console.error(error));
+          this.$refs[formName].resetFields();
         } else {
           this.$notify.error({
-            title: "Error",
+            title: "Oga do well na!!",
             message: "Error Submitting Comment",
             showClose: false
           });

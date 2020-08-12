@@ -5,7 +5,7 @@
         <div class="img-section">
           <div class="img-inner">
             <div class="img-container"></div>
-            <img class="img" src="./../assets/uchedotphp.jpg" />
+            <img class="img" src="./../assets/uchedotphp.jpeg" />
           </div>
         </div>
       </el-col>
