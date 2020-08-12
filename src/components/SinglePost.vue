@@ -12,17 +12,53 @@
 
           <!-- comments section -->
 
-          <!-- <div class="comments-wrapper">
-        <div class="compose-wrapper">
-          <div class="textarea-outer-wrapper">
-            <div class="textarea-wrapper">
-              <div>
-                <span class="placeholder" style="color: black">Start the discussion</span>
-              </div>
+          <header style="padding: 5px">
+            <strong>{{comments.length}} comments</strong>
+          </header>
+          <div class="conversation-area">
+            <div class="conversation-box">
+              <el-row :gutter="10">
+                <el-col :xs="4" :sm="8" :md="8" :lg="8" :xl="2">
+                  <div class="grid-content bg-purple">
+                    <div class="avatar-box">
+                      <img src="./../assets/wejapa.png" height="40" alt srcset />
+                    </div>
+                  </div>
+                </el-col>
+                <el-col :xs="20" :sm="16" :md="16" :lg="16" :xl="22">
+                  <div class="grid-content bg-purple-light">
+                    <div class="comment-text-area">
+                      <el-input
+                        type="textarea"
+                        :autosize="{ minRows: 2, maxRows: 4}"
+                        placeholder="Please input"
+                        v-model="writtenComment"
+                      ></el-input>
+                    </div>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+            <div class="conversation-posts" v-for="comment in comments" :key="comment.id">
+              <el-row :gutter="10">
+                <el-col :xs="4" :sm="2" :md="4" :lg="8" :xl="2">
+                  <div class="grid-content bg-purple">
+                    <div class="avatar-box">
+                      <img src="./../assets/wejapa.png" height="40" alt srcset />
+                    </div>
+                  </div>
+                </el-col>
+                <el-col :xs="20" :sm="22" :md="20" :lg="16" :xl="22">
+                  <div class="grid-content bg-purple-light">
+                    <div class="posted-comments">
+                      <h6 style="color: #3771EE; padding: 3px 5px">{{comment.name}}</h6>
+                      <p style="padding: 5px">{{comment.body}}</p>
+                    </div>
+                  </div>
+                </el-col>
+              </el-row>
             </div>
           </div>
-        </div>
-      </div>-->
         </div>
       </div>
     </el-main>
@@ -30,35 +66,23 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   name: "SinglePostComponent",
   props: {
-    id: Number,
+    post: {
+      type: Object,
+      required: true
+    },
+    comments: {
+      type: Array,
+      required: true
+    }
   },
   data() {
     return {
-      post: {},
+      writtenComment: ""
     };
-  },
-  created() {
-    console.log(
-      `this is the id in singlePost: ${this.id} and type of: ${typeof this.id}`
-    );
-    console.log(
-      `this is the type recieved in singlePost: ${typeof this.$route.params.id}`
-    );
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts/" + this.id)
-      .then((response) => {
-        this.post = response.data;
-      })
-      .catch((error) => {
-        debugger;
-        error;
-      });
-    console.log(this.id);
-  },
+  }
 };
 </script>
 
@@ -157,5 +181,36 @@ export default {
   text-overflow: ellipsis;
   overflow: hidden;
   cursor: text;
+}
+
+// comment styles
+.conversation-area {
+  // border: 2px solid red;
+}
+
+.conversation-area .conversation-box {
+  margin-bottom: 10px;
+}
+
+.conversation-area .conversation-box .avatar-box {
+  background: green;
+  padding: 5px;
+}
+
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
 }
 </style>

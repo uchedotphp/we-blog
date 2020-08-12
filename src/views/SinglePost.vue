@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <SinglePostComponent v-bind:id="id" />
+    <SinglePostComponent v-bind:post="post" v-bind:comments="comments" />
     <Footer />
   </div>
 </template>
@@ -13,17 +13,20 @@ import Footer from "@/components/Footer";
 export default {
   name: "SinglePost",
   props: {
-    id: Number,
-  },
-  created() {
-    console.log(`this is the id: ${this.id} and type of: ${typeof this.id}`);
-    console.log(`this is the type recieved: ${typeof this.$route.params.id}`);
+    post: {
+      type: Object,
+      required: true
+    },
+    comments: {
+      type: Array,
+      required: true
+    }
   },
   components: {
     SinglePostComponent,
     Header,
-    Footer,
-  },
+    Footer
+  }
 };
 </script>
 
