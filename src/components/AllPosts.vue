@@ -3,15 +3,26 @@
     <el-col :span="24">
       <div class="blog-wrapper">
         <header class="title">Latest Stories</header>
-        <div v-for="post in posts" :key="post.id" class="post-card">
-          <div class="post-details">
-            <div class="post-content">
-              <h2 class="post-title">
-                <router-link :to="{name: 'SinglePost', params:{id: post.id}}">{{ post.title }}</router-link>
-              </h2>
-              <p class="post-excerpt">{{ post.body }}</p>
-              <div class="read-more">
-                <router-link :to="{name: 'SinglePost', params:{id: post.id}}">Read More</router-link>
+        <div v-loading="loading" element-loading-text="Loading Data...">
+          <div v-for="post in posts" :key="post.id" class="post-card">
+            <div class="post-details">
+              <div class="post-content">
+                <h2 class="post-title">
+                  <router-link
+                    :to="{
+                      name: 'SinglePost',
+                      params: { id: parseInt(post.id) },
+                    }"
+                    >{{ post.title }}</router-link
+                  >
+                </h2>
+                <p class="post-excerpt">{{ post.body }}</p>
+                <div class="read-more">
+                  <router-link
+                    :to="{ name: 'SinglePost', params: { id: post.id } }"
+                    >Read More</router-link
+                  >
+                </div>
               </div>
             </div>
           </div>
@@ -64,20 +75,24 @@ export default {
   name: "AllPostsComponent",
   data() {
     return {
-      posts: []
+      loading: false,
+      posts: [],
     };
   },
   created() {
     axios
-      .get("https://jsonplaceholder.typicode.com/posts?_page=20&_limit=5")
-      .then(response => {
+      .get(
+        "https://jsonplaceholder.typicode.com/posts?_sort=views&_order=desc?_page=20&_limit=5"
+      )
+      .then((response) => {
         this.posts = response.data;
+        console.log(typeof response.data[0].id);
       })
-      .catch(error => {
+      .catch((error) => {
         debugger;
         error;
       });
-  }
+  },
 };
 </script>
 

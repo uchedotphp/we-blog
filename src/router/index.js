@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Nprogress from "nprogress";
+import ErrorPage from "@/views/ErrorPage";
 
 Vue.use(VueRouter);
 
@@ -13,8 +14,14 @@ const routes = [
   {
     path: "/posts/:id",
     name: "SinglePost",
+    props: true,
     component: () =>
       import(/* webpackChunkName: "home" */ "../views/SinglePost.vue"),
+  },
+  {
+    path: "*",
+    name: "ErrorPage",
+    component: ErrorPage,
   },
 ];
 

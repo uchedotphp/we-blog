@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "app",
-  components: {}
+  components: {},
 };
 </script>
 
@@ -25,6 +25,8 @@ export default {
 
 body {
   color: rgb(41, 41, 41);
+  overflow-x: hidden;
+  height: 100%;
 }
 
 h1,

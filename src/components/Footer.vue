@@ -1,9 +1,9 @@
 <template>
   <el-row>
     <el-col :span="24">
-      <el-container>
-        <el-footer>Wejapa . Internship</el-footer>
-      </el-container>
+      <el-footer>
+        <img src="./../assets/wejapa.png" height="50" alt="wejapa" srcset=""
+      /></el-footer>
     </el-col>
   </el-row>
 </template>
@@ -16,12 +16,12 @@ export default {
 
 <style lang="scss" scoped>
 .el-footer {
-  // position: relative;
+  position: relative;
   font-size: 15px;
   text-align: center;
   margin-top: 120px;
   overflow: hidden;
-  padding: 30px 15px;
+  // padding: 30px 15px;
   border-top: 1px solid rgb(243, 243, 243);
 }
 </style>

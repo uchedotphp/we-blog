@@ -1,16 +1,18 @@
 <template>
-  <div class="blog-post-details-wrapper">
-    <div class="post-details-wrapper">
-      <div class="post-description-wrapper">
-        <h1 class="post-title">{{post.title}}</h1>
-      </div>
-      <div class="post-description">
-        <p>{{post.body}}</p>
-      </div>
+  <el-container>
+    <el-main>
+      <div class="blog-post-details-wrapper">
+        <div class="post-details-wrapper">
+          <div class="post-description-wrapper">
+            <h1 class="post-title">{{ post.title }}</h1>
+          </div>
+          <div class="post-description">
+            <p>{{ post.body }}</p>
+          </div>
 
-      <!-- comments section -->
+          <!-- comments section -->
 
-      <!-- <div class="comments-wrapper">
+          <!-- <div class="comments-wrapper">
         <div class="compose-wrapper">
           <div class="textarea-outer-wrapper">
             <div class="textarea-wrapper">
@@ -21,8 +23,10 @@
           </div>
         </div>
       </div>-->
-    </div>
-  </div>
+        </div>
+      </div>
+    </el-main>
+  </el-container>
 </template>
 
 <script>
@@ -30,35 +34,44 @@ import axios from "axios";
 export default {
   name: "SinglePostComponent",
   props: {
-    id: Number
+    id: Number,
   },
   data() {
     return {
-      post: {}
+      post: {},
     };
   },
   created() {
+    console.log(
+      `this is the id in singlePost: ${this.id} and type of: ${typeof this.id}`
+    );
+    console.log(
+      `this is the type recieved in singlePost: ${typeof this.$route.params.id}`
+    );
     axios
-      .get(
-        "https://jsonplaceholder.typicode.com/posts/" + this.$route.params.id
-      )
-      .then(response => {
+      .get("https://jsonplaceholder.typicode.com/posts/" + this.id)
+      .then((response) => {
         this.post = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         debugger;
         error;
       });
-  }
+    console.log(this.id);
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.el-container {
+  min-height: 100%;
+}
+
 .blog-post-details-wrapper {
-  width: 1500px;
+  width: 860px;
   max-width: 100%;
   margin: 0 auto;
-  padding: 90px 75px 120px;
+  padding: 90px 0 120px;
 }
 
 .blog-post-details-wrapper .post-details-wrapper {
@@ -70,7 +83,7 @@ export default {
 }
 
 .blog-post-details-wrapper .post-details-wrapper .post-description-wrapper {
-  // max-width: 50%;
+  max-width: 100%;
   width: 870px;
 }
 
