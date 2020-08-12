@@ -19,21 +19,41 @@
             <div class="conversation-box">
               <el-row :gutter="10">
                 <el-col :xs="4" :sm="8" :md="8" :lg="8" :xl="2">
-                  <div class="grid-content bg-purple">
+                  <div class="grid-content">
                     <div class="avatar-box">
                       <img src="./../assets/wejapa.png" height="40" alt srcset />
                     </div>
                   </div>
                 </el-col>
                 <el-col :xs="20" :sm="16" :md="16" :lg="16" :xl="22">
-                  <div class="grid-content bg-purple-light">
+                  <div class="grid-content">
                     <div class="comment-text-area">
-                      <el-input
-                        type="textarea"
-                        :autosize="{ minRows: 2, maxRows: 4}"
-                        placeholder="Please input"
-                        v-model="writtenComment"
-                      ></el-input>
+                      <el-form
+                        :model="user"
+                        :rules="rules"
+                        ref="ruleForm"
+                        label-width="120px"
+                        class="demo-ruleForm"
+                      >
+                        <el-form-item label="Drop Comment" prop="writtenComment">
+                          <el-input type="textarea" v-model="user.writtenComment"></el-input>
+                        </el-form-item>
+                        <!-- <el-input
+                          prop="writtenComment"
+                          type="textarea"
+                          :autosize="{ minRows: 2, maxRows: 4}"
+                          placeholder="Please input"
+                          v-model="user.writtenComment"
+                        ></el-input>-->
+                        <el-form-item label="Full Name" prop="name">
+                          <el-col :span="11">
+                            <el-input v-model="user.name"></el-input>
+                          </el-col>
+                        </el-form-item>
+                        <el-col :span="11">
+                          <el-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>
+                        </el-col>
+                      </el-form>
                     </div>
                   </div>
                 </el-col>
@@ -42,9 +62,9 @@
             <div class="conversation-posts" v-for="comment in comments" :key="comment.id">
               <el-row :gutter="10">
                 <el-col :xs="4" :sm="2" :md="4" :lg="8" :xl="2">
-                  <div class="grid-content bg-purple">
+                  <div class="grid-content">
                     <div class="avatar-box">
-                      <img src="./../assets/wejapa.png" height="40" alt srcset />
+                      <img src="./../assets/wejapa.png" height="40" alt="wejapa" />
                     </div>
                   </div>
                 </el-col>
@@ -80,8 +100,50 @@ export default {
   },
   data() {
     return {
-      writtenComment: ""
+      user: {
+        name: "",
+        writtenComment: ""
+      },
+      rules: {
+        name: [
+          {
+            required: true,
+            message: "Please input your full name",
+            trigger: "blur"
+          },
+          {
+            min: 3,
+            max: 5,
+            message: "Length should be 3 to 5",
+            trigger: "blur"
+          }
+        ],
+        writtenComment: [
+          {
+            required: true,
+            message: "Please input some comment",
+            trigger: "blur"
+          }
+        ]
+      }
     };
+  },
+
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          this.$notify.error({
+            title: "Error",
+            message: "Error Submitting Comment",
+            showClose: false
+          });
+          return false;
+        }
+      });
+    }
   }
 };
 </script>
@@ -193,7 +255,6 @@ export default {
 }
 
 .conversation-area .conversation-box .avatar-box {
-  background: green;
   padding: 5px;
 }
 
