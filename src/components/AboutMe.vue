@@ -16,11 +16,9 @@
             Hey! I’m
             <b>Uche</b>
           </h1>
-          <p class="description">
-            Breakfast procuring no end happiness allowance assurance frank. Met
-            simplicity nor difficulty unreserved who. Entreaties mr conviction
-            dissimilar me astonished estimating cultivated.
-          </p>
+          <p
+            class="description"
+          >I am Nwulu Uchechukwu. Looking to step thoroughly into this frontend development skill. Hopefully i work up to my fullest potentials.</p>
         </div>
       </el-col>
       <!-- </el-container> -->
