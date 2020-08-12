@@ -1,12 +1,11 @@
 <template>
   <el-row :gutter="20">
     <div class="intro-pane">
-      <!-- <el-container> -->
       <el-col :span="8">
         <div class="img-section">
           <div class="img-inner">
             <div class="img-container"></div>
-            <img class="img" src="./../assets/prof.jpeg" />
+            <img class="img" src="./../assets/uchedotphp.jpg" />
           </div>
         </div>
       </el-col>
@@ -21,7 +20,6 @@
           >I am Nwulu Uchechukwu. Looking to step thoroughly into this frontend development skill. Hopefully i work up to my fullest potentials.</p>
         </div>
       </el-col>
-      <!-- </el-container> -->
     </div>
   </el-row>
 </template>
