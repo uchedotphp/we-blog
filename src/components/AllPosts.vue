@@ -91,9 +91,13 @@ export default {
     (this.pageLimit = 5),
       axios
         .get(
-          "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=20")
+          "https://jsonplaceholder.typicode.com/posts?_page=" +
+            this.page +
+            "&_limit=" +
+            this.pageLimit        
+          )
         .then(response => {
-          // this.pageCount = response.headers["x-total-count"] / 5;
+          this.pageCount = response.headers["x-total-count"] / 5;
           this.posts = response.data;
         })
         .catch(error => {
