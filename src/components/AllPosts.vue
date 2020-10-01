@@ -86,13 +86,14 @@ export default {
   console.log(this.$route);
   },
   created() {
+  console.log('hi');
     // TODO:: uche dont forget to add axios interceptors for that section reload
     (this.pageLimit = 5),
       axios
         .get(
           "https://jsonplaceholder.typicode.com/posts?_page=1&_limit=20")
         .then(response => {
-          this.pageCount = response.headers["x-total-count"] / 5;
+          // this.pageCount = response.headers["x-total-count"] / 5;
           this.posts = response.data;
         })
         .catch(error => {
